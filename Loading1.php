@@ -1,0 +1,37 @@
+﻿<html>
+<body>
+
+<?php
+$id = $_GET["steamid"];
+$mapname = $_GET["mapname"];
+$authserver = bcsub($communityid, '76561197960265728') & 1;
+$authid = (bcsub($communityid, '76561197960265728')-$authserver)/2;
+$steamid = "STEAM_0:$authserver:$authid";
+$communityid = $_GET["steamid"];
+$link = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=29DCB95FE09074E521415ED4EAE4DB95&steamids=' . $id . '&format=json');
+$myarray = json_decode($link, true);
+?>
+
+<embed src="http://112.154.198.208/KRmetroi2%20%28online%2daudio%2dconverter.com%29.wav" width="1" height="1" hidden="true" loop="ture" autoplay="true" allowscriptaccess="always">
+</embed>
+
+ <div id="bg"><img src="http://112.154.198.208/180.jpg" width="100%" height="100%" alt="">
+ 
+    <img class="avatar" src="<?php print $myarray['response']['players'][0]['avatarmedium']; ?>" width="9.6%" height="17%" alt="" style="position: absolute; top: 50%; left: 55%;">
+ <p width="100%" height="100%" alt="" style="font-family:Helvetica;color:white;font-size:35px; position: absolute; top: 50%; left: 65%;"> <b>
+Гангут의 서버에 오신것을 환영합니다! </b></p>
+ <p class="name" width="100%" height="100%" alt="" style="font-family:Helvetica;color:white;font-size:35px; position: absolute; top: 55%; left: 65%;">
+ <b><?php print $myarray['response']['players'][0]['personaname']; ?>
+ </b>
+ </p>
+
+ <p width="100%" height="100%" alt="" style="font-family:Helvetica;color:white;font-size:35px; position: absolute; top: 70%; left: 65%;"> <b>
+플래이 할 맵은 </b></p>
+ <p width="100%" height="100%" alt="" style="font-family:Helvetica;color:white;font-size:35px; position: absolute; top: 75%; left: 65%;"> <b>
+ <?PHP echo $mapname; ?> </b></p>
+ </div>
+ 
+ 
+</div>
+</body>
+</html> 
